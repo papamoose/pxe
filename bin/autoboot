@@ -1,0 +1,10 @@
+#!/bin/bash
+
+FILE=$1		#location of pxe template
+HOSTNAME=$2	# hostname of machine to autoboot
+PXELINUXCFG="/srv/tftp/pxelinux.cfg"
+
+HEX=`gethostip -x $HOSTNAME`
+
+cp $FILE $PXELINUXCFG/$HEX
+

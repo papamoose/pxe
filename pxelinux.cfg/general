@@ -1,0 +1,24 @@
+LABEL back
+   MENU LABEL ^0 back...
+   KERNEL menu.c32
+   APPEND pxelinux.cfg/default
+
+LABEL debian_6.07_squeeze_amd64
+   MENU LABEL Debian 6.07 Squeeze Net Install AMD64 Official
+   LINUX kernel/debian/official/linux
+   INITRD kernel/debian/official/initrd.gz
+
+LABEL ubuntu_12.04_precise_amd64
+   MENU LABEL Ubuntu 12.04 Precise Net Install AMD64 Official
+   LINUX kernel/ubuntu/official/linux
+   INITRD kernel/ubuntu/official/initrd.gz
+
+LABEL debian_6.07_squeeze_amd64
+   MENU LABEL Debian 6.07 Squeeze Net Install AMD64 Non-free
+   LINUX kernel/debian/non-free/linux
+   INITRD kernel/debian/non-free/initrd.gz
+
+LABEL ubuntu_12.04_precise_amd64
+   MENU LABEL Ubuntu 12.04 Precise Net Install AMD64 Non-free
+   LINUX kernel/ubuntu/non-free/linux
+   INITRD kernel/ubuntu/non-free/initrd.gz

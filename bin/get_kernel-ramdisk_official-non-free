@@ -1,0 +1,106 @@
+#!/bin/bash
+
+# Must be run as root
+# requires: wget, curl, rsync
+# apt-get install -y wget curl rsync
+
+
+distro=$1
+ubuntu="oneiric precise quantal raring"
+debian="squeeze wheezy stable unstable testing"
+WORKING_DIR=/tmp/initrd
+CURRENT_DIR=`pwd -P`
+
+mkdir -p $WORKING_DIR
+
+
+main(){
+	if [ -z "$distro" ]; then
+		usage
+		exit
+	fi
+
+	if [ $distro == 'ubuntu' ] || [ $distro == 'debian' ]; then
+
+		if [ $distro == 'ubuntu' ]; then
+			distroreleases=$ubuntu
+		elif [ $distro == 'debian' ]; then
+			distroreleases=$debian
+		fi
+
+		for release in $distroreleases
+		do
+			for arch in amd64 i386
+			do
+				mkdir -p $CURRENT_DIR/$release/$arch/official
+				mkdir -p $CURRENT_DIR/$release/$arch/non-free
+				for file in linux initrd.gz
+				do
+					echo "Downloading $release $arch $file..."
+					wget -q -c -P $CURRENT_DIR/$release/$arch/official/ http://mirror.anl.gov/$distro/dists/$release/main/installer-$arch/current/images/netboot/$distro-installer/$arch/$file
+				done
+
+				echo "Copying kernel to non-free directory..."
+				cp $CURRENT_DIR/$release/$arch/official/linux $CURRENT_DIR/$release/$arch/non-free/linux
+
+				if [ $file == "initrd.gz" ]; then
+
+					# copy initrd to working directory
+					cp $CURRENT_DIR/$release/$arch/official/initrd.gz $WORKING_DIR/initrd.gz
+
+					# get lastest firmware file name and download to working directory
+					# we use debians archive because they have all latest non-free drivers
+					FIRMWARE_URL="http://ftp.debian.org/debian/pool/non-free/f/firmware-nonfree"
+					FIRMWARE_NAME=`curl -s $FIRMWARE_URL/ | sed -e :a -e 's/<[^>]*>//g;/</N;//ba' | grep ".tar.gz" | sed 's/gz/gz /' | awk '{print $2 " " $3 " " $1}' | tail -n1 | awk '{print $3}'`
+
+					cd $WORKING_DIR
+					echo "Downloading $FIRMWARE_NAME..."
+					wget -c -q $FIRMWARE_URL/$FIRMWARE_NAME
+
+					# extract the ram disk
+					EXTRACTED_DIR=$WORKING_DIR/extracted
+					mkdir -p $EXTRACTED_DIR
+					cd $EXTRACTED_DIR
+					echo "Extracting the ramdisk (initrd.gz)"
+					gunzip --quiet <$WORKING_DIR/initrd.gz | cpio --extract --preserve --quiet
+
+					# create firmware directory, and put extracted firmware into it
+					cd $WORKING_DIR
+					TAR_DIR="firmware-nonfree/linux-nonfree"
+					tar -xzf $WORKING_DIR/$FIRMWARE_NAME
+
+					# copy the folder 'firmware' to $EXTRACTED_DIR
+					echo "Copying non-free firmware to lib/firmware in initrd"
+					rsync -avq "$WORKING_DIR/$TAR_DIR/" $EXTRACTED_DIR/lib/firmware/
+
+					# create new initrd.gz
+					echo -n "Creating new initrd.gz..."
+					cd $EXTRACTED_DIR
+					find . | cpio --create --format='newc' | gzip > $WORKING_DIR/initrd_non-free.gz
+
+					echo "Copying non-free ramdisk to non-free directory..."
+					cp $WORKING_DIR/initrd_non-free.gz $CURRENT_DIR/$release/$arch/non-free/initrd.gz
+
+					# remove temporary files
+					rm -r $EXTRACTED_DIR
+					rm $WORKING_DIR/initrd.gz
+
+					# go back to directory from which we started
+					cd $CURRENT_DIR
+
+				fi
+				echo ""
+			done
+		done
+	else
+		usage
+		exit
+	fi
+}
+
+usage(){
+	echo "Usage: $0 <distrobution>"
+	echo "Only supports 'ubuntu' and 'debian'"
+}
+
+main

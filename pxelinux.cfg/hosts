@@ -1,0 +1,34 @@
+LABEL back
+   MENU LABEL ^0 back...
+   KERNEL menu.c32
+   APPEND pxelinux.cfg/default
+
+LABEL sample-host
+   MENU LABEL ^1 pklan sample-host
+   LINUX kernel/debian/squeeze/amd64/official/linux
+   INITRD kernel/debian/squeeze/amd64/official/initrd.gz
+   APPEND url=http://10.13.37.205/host/sample-host/preseed.cfg interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL dns
+   MENU LABEL ^1 pklan DNS
+   LINUX kernel/debian/squeeze/amd64/official/linux
+   INITRD kernel/debian/squeeze/amd64/official/initrd.gz
+   APPEND url=http://10.13.37.205/host/dns/preseed.cfg interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL dns
+   MENU LABEL ^2 pklan DHCP
+   LINUX kernel/debian/squeeze/amd64/official/linux
+   INITRD kernel/debian/squeeze/amd64/official/initrd.gz
+   APPEND url=http://10.13.37.205/host/dhcp/preseed.cfg interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL apt
+   MENU LABEL ^3 pklan APT
+   LINUX kernel/debian/squeeze/amd64/official/linux
+   INITRD kernel/debian/squeeze/amd64/official/initrd.gz
+   APPEND url=http://10.13.37.205/host/apt/preseed.cfg interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL spyro
+   MENU LABEL ^4 host spyro
+   LINUX kernel/ubuntu/quantal/amd64/official/linux
+   INITRD kernel/ubuntu/quantal/amd64/official/initrd.gz
+   APPEND url=http://10.13.37.205/host/spyro/preseed.cfg interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true

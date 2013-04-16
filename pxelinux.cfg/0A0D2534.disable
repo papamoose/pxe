@@ -1,0 +1,6 @@
+default spyro
+LABEL spyro
+MENU LABEL host spyro
+LINUX kernel/ubuntu/precise/amd64/official/linux
+INITRD kernel/ubuntu/precise/amd64/official/initrd.gz
+APPEND url=http://10.13.37.205/host/spyro/preseed.cfg interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true

@@ -1,0 +1,4 @@
+LABEL back
+   MENU LABEL ^0 back...
+   KERNEL menu.c32
+   APPEND pxelinux.cfg/default

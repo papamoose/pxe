@@ -1,0 +1,44 @@
+serial 0 57600
+default menu.c32
+prompt0
+timeout 70
+ontimeout local
+
+menu title "pk.lan netboot"
+menu autoboot "Booting from hard-drive in # seconds."
+menu INCLUDE pxelinux.cfg/graphics.conf
+
+LABEL local
+  MENU LABEL ^1 Local Disk
+  localboot 0
+
+LABEL Debian Installer
+  MENU LABEL ^2 Debian Installer
+  KERNEL menu.c32
+  APPEND pxelinux.cfg/debian-installer
+
+LABEL utils
+  MENU LABEL ^3 Utilities
+  KERNEL menu.c32
+  APPEND pxelinux.cfg/utils
+
+LABEL virts
+  MENU LABEL ^4 Virtualization
+  KERNEL menu.c32
+  APPEND pxelinux.cfg/virts
+
+LABEL general
+  MENU LABEL ^5 General
+  KERNEL menu.c32
+  APPEND pxelinux.cfg/general
+
+# Windows PE, etc.
+LABEL windows
+  MENU LABEL ^6 Windows
+  KERNEL menu.c32
+  APPEND pxelinux.cfg/windows
+
+LABEL custom_servers
+  MENU LABEL ^7 Custom Hosts
+  KERNEL menu.c32
+  APPEND pxelinux.cfg/hosts
