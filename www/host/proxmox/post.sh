@@ -24,10 +24,9 @@ auto lo
 iface lo inet loopback
 auto eth0
 iface eth0 inet static
-  address 10.13.37.212
+  address 10.13.37.xxx
   netmask 255.255.255.0
   gateway 10.13.37.1
-  dns-nameservers 10.13.37.206
 EOF
 /etc/init.d/networking restart
 }
