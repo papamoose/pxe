@@ -3,11 +3,18 @@ LABEL back
    KERNEL menu.c32
    APPEND pxelinux.cfg/default
 
-LABEL sample-host
-   MENU LABEL ^1 pklan sample-host
+LABEL debian-host
+   MENU LABEL debian-host
    LINUX kernel/debian/squeeze/amd64/official/linux
    INITRD kernel/debian/squeeze/amd64/official/initrd.gz
-   APPEND url=http://10.13.37.205/host/sample-host/preseed.cfg interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+   APPEND url=http://10.13.37.205/host/debian-host/preseed.cfg interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-host
+   MENU LABEL ubuntu-host
+   LINUX kernel/ubuntu/precise/amd64/official/linux
+   INITRD kernel/ubuntu/precise/amd64/official/initrd.gz
+   APPEND url=http://10.13.37.205/host/ubuntu-host/preseed.cfg interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
 
 LABEL dns
    MENU LABEL ^1 pklan DNS
