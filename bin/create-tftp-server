@@ -1,0 +1,236 @@
+#!/bin/bash
+
+distro=$1
+
+servername="netboot"
+serverdomain="local"
+tftpdir="/srv/tftp"
+mirror="mirror.anl.gov"
+
+# generate md5 password with salt
+# printf "lamepassword" | mkpasswd -S `pwgen -1` -s -m md5
+# used for root password in all preseed files
+md5pass="\$1\$ahwobeeh\$wDnkfRQ5COUC5BjnOekoQ0"
+
+partitions="100pct-lvm-atomic-sda 100pct-raid-lvm-atomic-sda+sdb 50pct-lvm-multi-sda 80pct-lvm-advanced-partitions-sda 90pct-lvm-multi-sda"
+
+declare -a debian=(unstable stable squeeze wheezy)
+declare -a ubuntu=(hardy lucid natty oneiric precise quantal raring)
+declare -A distros=( ["ubuntu"]="${ubuntu[@]}" ["debian"]="${debian[@]}" )
+architectures="i386 amd64"
+
+setupbase(){
+  mkdir -p $tftpdir/bin
+  mkdir -p $tftpdir/kernel
+  mkdir -p $tftpdir/pxelinux.cfg
+  mkdir -p $tftpdir/www
+
+  apt-get install -y syslinux tftpd-hpa apache2
+
+  syslinuxdir="/usr/lib/syslinux"
+  ln -s $syslinuxdir/menu.c32 $tftpdir/menu.c32
+  ln -s $syslinuxdir/vesamenu.c32 $tftpdir/vesamenu.c32
+  ln -s $syslinuxdir/pxelinux.0 $tftpdir/pxelinux.0
+  ln -s $syslinuxdir/memdisk $tftpdir/memdisk
+
+cat > $tftpdir/www/robots.txt <<EOF
+User-agent: *
+Disallow: /
+EOF
+
+cat > /etc/default/tftpd-hpa <<EOF
+# /etc/default/tftpd-hpa
+TFTP_USERNAME="tftp"
+TFTP_DIRECTORY="/srv/tftp"
+TFTP_ADDRESS="0.0.0.0:69"
+TFTP_OPTIONS="--secure"
+EOF
+
+cat > /etc/apache/sites-enabled/10-tftp <<EOF
+<VirtualHost *:80>
+  ServerAdmin webmaster@localhost
+  ServerName "$servername.$serverdomain"
+  ServerAlias $servername
+  DocumentRoot /srv/tftp/www
+  <Directory /srv/tftp/www/>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride None
+    Order allow,deny
+    allow from all
+  </Directory>
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  LogLevel warn
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+EOF
+
+  /etc/init.d/tftpd-hpa restart
+  /etc/init.d/apache2 restart
+
+}
+
+downloadkernel(){
+  distro=$1
+  release=$2
+  arch=$3
+
+  wd="/tmp/initrd"
+  mkdir -p $wd
+  mkdir -p "$tftpdir/kernel/$distro/$release/$arch/official"
+  mkdir -p "$tftpdir/kernel/$distro/$release/$arch/non-free"
+
+  # get lastest firmware file name and download to working directory
+  # we use debians archive because they have all latest non-free drivers
+  firmwareurl="http://ftp.debian.org/debian/pool/non-free/f/firmware-nonfree"
+  firmwarename=`curl -s $firmwareurl/ | sed -e :a -e 's/<[^>]*>//g;/</N;//ba' | grep ".tar.gz" | sed 's/gz/gz /' | awk '{print $2 " " $3 " " $1}' | tail -n1 | awk '{print $3}'`
+  echo "Downloading $firmwarename..."
+  wget -c -q -O $wd/$firmwarename $firmwareurl/$firmwarename
+  # create firmware directory, and put extracted firmware into it
+  tar -xzf $wd/$firmwarename -C $wd
+  TAR_DIR="firmware-nonfree/linux-nonfree"
+
+
+  for file in linux initrd.gz
+  do
+    echo "Downloading $distro $release $arch $file..."
+    wget -q -c -P $tftpdir/kernel/$distro/$release/$arch/official/ http://$mirror/$distro/dists/$release/main/installer-$arch/current/images/netboot/$distro-installer/$arch/$file
+
+    echo "Copying kernel to non-free directory..."
+    cp $tftpdir/kernel/$distro/$release/$arch/official/linux $tftpdir/kernel/$distro/$release/$arch/non-free/linux
+
+    if [ $file == "initrd.gz" ]; then
+      # copy initrd to working directory
+      cp $tftpdir/kernel/$distro/$release/$arch/official/initrd.gz $wd/initrd.gz
+
+      # extract the ram disk
+      extracteddir=$wd/extracted
+      mkdir -p $extracteddir
+      cd $extracteddir
+      echo "Extracting the ramdisk (initrd.gz)"
+      gunzip --quiet <$wd/initrd.gz | cpio --extract --preserve --quiet
+
+      # copy the folder 'firmware' to $extracteddir
+      echo "Copying non-free firmware to lib/firmware in initrd"
+      rsync -avq "$wd/$TAR_DIR/" $extracteddir/lib/firmware/
+
+      # create new initrd.gz
+      echo -n "Creating new initrd.gz..."
+      cd $extracteddir
+      find . | cpio --create --format='newc' | gzip > $wd/initrd_non-free.gz
+      echo "Copying non-free ramdisk to non-free directory..."
+      cp $wd/initrd_non-free.gz $tftpdir/kernel/$distro/$release/$arch/non-free/initrd.gz
+
+      # remove temporary files
+      rm -r $extracteddir
+      rm $wd/initrd.gz
+
+      # go back to directory from which we started
+      cd $CURRENT_DIR
+    fi
+  done
+}
+
+
+
+createpreseed(){
+  distro=$1
+  release=$2
+  arch=$3
+
+  wd="$tftpdir/www/$distro/$release/$arch"
+  mkdir -p $wd
+
+
+for part in $partitions
+do
+
+cat > "$wd/$part" <<EOF
+d-i debian-installer/locale string en_US
+d-i console-keymaps-at/keymap select us
+d-i keyboard-configuration/xkb-keymap select us
+
+d-i netcfg/choose_interface select auto
+d-i netcfg/get_hostname string unassigned-hostname
+d-i netcfg/get_domain string unassigned-domain
+
+d-i hw-detect/load_firmware boolean true
+
+d-i mirror/country string manual
+d-i mirror/http/hostname string $mirror
+d-i mirror/http/directory string /$distro
+#d-i mirror/http/proxy string
+d-i mirror/suite string $release
+
+d-i passwd/root-password-crypted password $md5pass
+d-i passwd/make-user boolean false
+
+d-i clock-setup/utc boolean true
+d-i time/zone string US/Central
+d-i clock-setup/ntp boolean true
+
+EOF
+
+wget -q -c --no-check-certificate -O - https://raw.github.com/papamoose/pxe/master/www/d-i/partition-recipies/$partition | cat - >> "$wd/$part"
+
+cat >> "$wd/$part" <<EOF
+
+d-i apt-setup/non-free boolean true
+d-i apt-setup/contrib boolean true
+tasksel tasksel/first multiselect standard
+d-i pkgsel/include string openssh-server build-essential
+d-i pkgsel/upgrade select full-upgrade
+
+popularity-contest popularity-contest/participate boolean false
+d-i finish-install/reboot_in_progress note
+d-i cdrom-detect/eject boolean false
+EOF
+done
+
+}
+
+
+createpxeentry(){
+  distro=$1
+  release=$2
+  arch=$3
+
+for part in $partitions
+do
+  for status in non-free official
+  do
+
+  wd="$tftpdir/pxelinux.cfg/$distro/$release/$arch/$status"
+  mkdir -p $wd
+
+cat >> "$wd/default" <<EOF
+LABEL "$distro-$release-$arch-$status-$part"
+  MENU LABEL "$distro $release $status $part"
+  LINUX "kernel/$distro/$release/$arch/$status/linux"
+  INITRD "kernel/$distro/$release/$arch/$status/initrd.gz"
+  APPEND url="http://$servername.$serverdomain/$distro/$release/$arch/$status/$part" interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+EOF
+  done
+done
+}
+
+
+main(){
+
+#  setupbase
+
+  for distro in "${!distros[@]}"
+  do
+    for release in ${distros["$distro"]}
+    do
+      for arch in $architectures
+      do
+        downloadkernel $distro $release $arch	# working
+        createpxeentry $distro $release $arch	# working, no menu entries to navigate between (distro, releases, arch, status)
+        createpreseed $distro $release $arch	# working
+      done
+    done
+  done
+
+}
+
+main

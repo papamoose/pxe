@@ -1,0 +1,14 @@
+LABEL back
+  MENU LABEL ^0 back...
+  KERNEL menu.c32
+  APPEND pxelinux.cfg/default
+
+LABEL ubuntu
+  MENU LABEL ^1 Ubuntu
+  KERNEL menu.c32
+  APPEND pxelinux.cfg/distro/ubuntu
+
+LABEL debian
+  MENU LABEL ^2 Debian   
+  KERNEL menu.c32
+  APPEND pxelinux.cfg/distro/debian

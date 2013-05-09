@@ -1,0 +1,25 @@
+LABEL "debian-squeeze-amd64-official-100pct-lvm-atomic-sda"
+  MENU LABEL "debian squeeze official 100pct-lvm-atomic-sda"
+  LINUX "kernel/debian/squeeze/amd64/official/linux"
+  INITRD "kernel/debian/squeeze/amd64/official/initrd.gz"
+  APPEND url="http://netboot.local/debian/squeeze/amd64/official/100pct-lvm-atomic-sda" interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+LABEL "debian-squeeze-amd64-official-100pct-raid-lvm-atomic-sda+sdb"
+  MENU LABEL "debian squeeze official 100pct-raid-lvm-atomic-sda+sdb"
+  LINUX "kernel/debian/squeeze/amd64/official/linux"
+  INITRD "kernel/debian/squeeze/amd64/official/initrd.gz"
+  APPEND url="http://netboot.local/debian/squeeze/amd64/official/100pct-raid-lvm-atomic-sda+sdb" interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+LABEL "debian-squeeze-amd64-official-50pct-lvm-multi-sda"
+  MENU LABEL "debian squeeze official 50pct-lvm-multi-sda"
+  LINUX "kernel/debian/squeeze/amd64/official/linux"
+  INITRD "kernel/debian/squeeze/amd64/official/initrd.gz"
+  APPEND url="http://netboot.local/debian/squeeze/amd64/official/50pct-lvm-multi-sda" interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+LABEL "debian-squeeze-amd64-official-80pct-lvm-advanced-partitions-sda"
+  MENU LABEL "debian squeeze official 80pct-lvm-advanced-partitions-sda"
+  LINUX "kernel/debian/squeeze/amd64/official/linux"
+  INITRD "kernel/debian/squeeze/amd64/official/initrd.gz"
+  APPEND url="http://netboot.local/debian/squeeze/amd64/official/80pct-lvm-advanced-partitions-sda" interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+LABEL "debian-squeeze-amd64-official-90pct-lvm-multi-sda"
+  MENU LABEL "debian squeeze official 90pct-lvm-multi-sda"
+  LINUX "kernel/debian/squeeze/amd64/official/linux"
+  INITRD "kernel/debian/squeeze/amd64/official/initrd.gz"
+  APPEND url="http://netboot.local/debian/squeeze/amd64/official/90pct-lvm-multi-sda" interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true

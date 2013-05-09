@@ -1,0 +1,25 @@
+LABEL "ubuntu-natty-amd64-non-free-100pct-lvm-atomic-sda"
+  MENU LABEL "ubuntu natty non-free 100pct-lvm-atomic-sda"
+  LINUX "kernel/ubuntu/natty/amd64/non-free/linux"
+  INITRD "kernel/ubuntu/natty/amd64/non-free/initrd.gz"
+  APPEND url="http://netboot.local/ubuntu/natty/amd64/non-free/100pct-lvm-atomic-sda" interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+LABEL "ubuntu-natty-amd64-non-free-100pct-raid-lvm-atomic-sda+sdb"
+  MENU LABEL "ubuntu natty non-free 100pct-raid-lvm-atomic-sda+sdb"
+  LINUX "kernel/ubuntu/natty/amd64/non-free/linux"
+  INITRD "kernel/ubuntu/natty/amd64/non-free/initrd.gz"
+  APPEND url="http://netboot.local/ubuntu/natty/amd64/non-free/100pct-raid-lvm-atomic-sda+sdb" interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+LABEL "ubuntu-natty-amd64-non-free-50pct-lvm-multi-sda"
+  MENU LABEL "ubuntu natty non-free 50pct-lvm-multi-sda"
+  LINUX "kernel/ubuntu/natty/amd64/non-free/linux"
+  INITRD "kernel/ubuntu/natty/amd64/non-free/initrd.gz"
+  APPEND url="http://netboot.local/ubuntu/natty/amd64/non-free/50pct-lvm-multi-sda" interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+LABEL "ubuntu-natty-amd64-non-free-80pct-lvm-advanced-partitions-sda"
+  MENU LABEL "ubuntu natty non-free 80pct-lvm-advanced-partitions-sda"
+  LINUX "kernel/ubuntu/natty/amd64/non-free/linux"
+  INITRD "kernel/ubuntu/natty/amd64/non-free/initrd.gz"
+  APPEND url="http://netboot.local/ubuntu/natty/amd64/non-free/80pct-lvm-advanced-partitions-sda" interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+LABEL "ubuntu-natty-amd64-non-free-90pct-lvm-multi-sda"
+  MENU LABEL "ubuntu natty non-free 90pct-lvm-multi-sda"
+  LINUX "kernel/ubuntu/natty/amd64/non-free/linux"
+  INITRD "kernel/ubuntu/natty/amd64/non-free/initrd.gz"
+  APPEND url="http://netboot.local/ubuntu/natty/amd64/non-free/90pct-lvm-multi-sda" interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true

@@ -1,0 +1,485 @@
+LABEL back
+   MENU LABEL ^0 back...
+   KERNEL menu.c32
+   APPEND pxelinux.cfg/distro/default
+
+LABEL ubuntu-hardy-amd64-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu hardy amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/hardy/amd64/non-free/linux
+  INITRD kernel/ubuntu/hardy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/hardy-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-hardy-i386-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu hardy i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/hardy/i386/non-free/linux
+  INITRD kernel/ubuntu/hardy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/hardy-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-lucid-amd64-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu lucid amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/lucid/amd64/non-free/linux
+  INITRD kernel/ubuntu/lucid/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/lucid-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-lucid-i386-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu lucid i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/lucid/i386/non-free/linux
+  INITRD kernel/ubuntu/lucid/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/lucid-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-natty-amd64-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu natty amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/natty/amd64/non-free/linux
+  INITRD kernel/ubuntu/natty/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/natty-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-natty-i386-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu natty i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/natty/i386/non-free/linux
+  INITRD kernel/ubuntu/natty/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/natty-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-oneiric-amd64-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu oneiric amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/oneiric/amd64/non-free/linux
+  INITRD kernel/ubuntu/oneiric/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/oneiric-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-oneiric-i386-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu oneiric i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/oneiric/i386/non-free/linux
+  INITRD kernel/ubuntu/oneiric/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/oneiric-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-precise-amd64-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu precise amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/precise/amd64/non-free/linux
+  INITRD kernel/ubuntu/precise/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/precise-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-precise-i386-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu precise i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/precise/i386/non-free/linux
+  INITRD kernel/ubuntu/precise/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/precise-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-quantal-amd64-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu quantal amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/quantal/amd64/non-free/linux
+  INITRD kernel/ubuntu/quantal/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/quantal-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-quantal-i386-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu quantal i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/quantal/i386/non-free/linux
+  INITRD kernel/ubuntu/quantal/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/quantal-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-raring-amd64-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu raring amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/raring/amd64/non-free/linux
+  INITRD kernel/ubuntu/raring/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/raring-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-raring-i386-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu raring i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/raring/i386/non-free/linux
+  INITRD kernel/ubuntu/raring/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/raring-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-saucy-amd64-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu saucy amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/saucy/amd64/non-free/linux
+  INITRD kernel/ubuntu/saucy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/saucy-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-saucy-i386-100pct-lvm-atomic-sda
+  MENU LABEL ubuntu saucy i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/ubuntu/saucy/i386/non-free/linux
+  INITRD kernel/ubuntu/saucy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/saucy-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-hardy-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu hardy amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/hardy/amd64/non-free/linux
+  INITRD kernel/ubuntu/hardy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/hardy-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-hardy-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu hardy i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/hardy/i386/non-free/linux
+  INITRD kernel/ubuntu/hardy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/hardy-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-lucid-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu lucid amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/lucid/amd64/non-free/linux
+  INITRD kernel/ubuntu/lucid/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/lucid-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-lucid-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu lucid i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/lucid/i386/non-free/linux
+  INITRD kernel/ubuntu/lucid/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/lucid-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-natty-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu natty amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/natty/amd64/non-free/linux
+  INITRD kernel/ubuntu/natty/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/natty-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-natty-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu natty i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/natty/i386/non-free/linux
+  INITRD kernel/ubuntu/natty/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/natty-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-oneiric-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu oneiric amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/oneiric/amd64/non-free/linux
+  INITRD kernel/ubuntu/oneiric/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/oneiric-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-oneiric-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu oneiric i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/oneiric/i386/non-free/linux
+  INITRD kernel/ubuntu/oneiric/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/oneiric-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-precise-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu precise amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/precise/amd64/non-free/linux
+  INITRD kernel/ubuntu/precise/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/precise-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-precise-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu precise i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/precise/i386/non-free/linux
+  INITRD kernel/ubuntu/precise/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/precise-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-quantal-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu quantal amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/quantal/amd64/non-free/linux
+  INITRD kernel/ubuntu/quantal/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/quantal-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-quantal-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu quantal i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/quantal/i386/non-free/linux
+  INITRD kernel/ubuntu/quantal/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/quantal-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-raring-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu raring amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/raring/amd64/non-free/linux
+  INITRD kernel/ubuntu/raring/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/raring-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-raring-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu raring i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/raring/i386/non-free/linux
+  INITRD kernel/ubuntu/raring/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/raring-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-saucy-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu saucy amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/saucy/amd64/non-free/linux
+  INITRD kernel/ubuntu/saucy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/saucy-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-saucy-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL ubuntu saucy i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/ubuntu/saucy/i386/non-free/linux
+  INITRD kernel/ubuntu/saucy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/saucy-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-hardy-amd64-50pct-lvm-multi-sda
+  MENU LABEL ubuntu hardy amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/hardy/amd64/non-free/linux
+  INITRD kernel/ubuntu/hardy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/hardy-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-hardy-i386-50pct-lvm-multi-sda
+  MENU LABEL ubuntu hardy i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/hardy/i386/non-free/linux
+  INITRD kernel/ubuntu/hardy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/hardy-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-lucid-amd64-50pct-lvm-multi-sda
+  MENU LABEL ubuntu lucid amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/lucid/amd64/non-free/linux
+  INITRD kernel/ubuntu/lucid/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/lucid-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-lucid-i386-50pct-lvm-multi-sda
+  MENU LABEL ubuntu lucid i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/lucid/i386/non-free/linux
+  INITRD kernel/ubuntu/lucid/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/lucid-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-natty-amd64-50pct-lvm-multi-sda
+  MENU LABEL ubuntu natty amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/natty/amd64/non-free/linux
+  INITRD kernel/ubuntu/natty/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/natty-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-natty-i386-50pct-lvm-multi-sda
+  MENU LABEL ubuntu natty i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/natty/i386/non-free/linux
+  INITRD kernel/ubuntu/natty/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/natty-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-oneiric-amd64-50pct-lvm-multi-sda
+  MENU LABEL ubuntu oneiric amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/oneiric/amd64/non-free/linux
+  INITRD kernel/ubuntu/oneiric/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/oneiric-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-oneiric-i386-50pct-lvm-multi-sda
+  MENU LABEL ubuntu oneiric i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/oneiric/i386/non-free/linux
+  INITRD kernel/ubuntu/oneiric/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/oneiric-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-precise-amd64-50pct-lvm-multi-sda
+  MENU LABEL ubuntu precise amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/precise/amd64/non-free/linux
+  INITRD kernel/ubuntu/precise/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/precise-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-precise-i386-50pct-lvm-multi-sda
+  MENU LABEL ubuntu precise i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/precise/i386/non-free/linux
+  INITRD kernel/ubuntu/precise/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/precise-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-quantal-amd64-50pct-lvm-multi-sda
+  MENU LABEL ubuntu quantal amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/quantal/amd64/non-free/linux
+  INITRD kernel/ubuntu/quantal/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/quantal-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-quantal-i386-50pct-lvm-multi-sda
+  MENU LABEL ubuntu quantal i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/quantal/i386/non-free/linux
+  INITRD kernel/ubuntu/quantal/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/quantal-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-raring-amd64-50pct-lvm-multi-sda
+  MENU LABEL ubuntu raring amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/raring/amd64/non-free/linux
+  INITRD kernel/ubuntu/raring/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/raring-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-raring-i386-50pct-lvm-multi-sda
+  MENU LABEL ubuntu raring i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/raring/i386/non-free/linux
+  INITRD kernel/ubuntu/raring/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/raring-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-saucy-amd64-50pct-lvm-multi-sda
+  MENU LABEL ubuntu saucy amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/saucy/amd64/non-free/linux
+  INITRD kernel/ubuntu/saucy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/saucy-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-saucy-i386-50pct-lvm-multi-sda
+  MENU LABEL ubuntu saucy i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/ubuntu/saucy/i386/non-free/linux
+  INITRD kernel/ubuntu/saucy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/saucy-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-hardy-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu hardy amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/hardy/amd64/non-free/linux
+  INITRD kernel/ubuntu/hardy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/hardy-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-hardy-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu hardy i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/hardy/i386/non-free/linux
+  INITRD kernel/ubuntu/hardy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/hardy-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-lucid-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu lucid amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/lucid/amd64/non-free/linux
+  INITRD kernel/ubuntu/lucid/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/lucid-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-lucid-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu lucid i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/lucid/i386/non-free/linux
+  INITRD kernel/ubuntu/lucid/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/lucid-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-natty-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu natty amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/natty/amd64/non-free/linux
+  INITRD kernel/ubuntu/natty/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/natty-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-natty-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu natty i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/natty/i386/non-free/linux
+  INITRD kernel/ubuntu/natty/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/natty-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-oneiric-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu oneiric amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/oneiric/amd64/non-free/linux
+  INITRD kernel/ubuntu/oneiric/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/oneiric-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-oneiric-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu oneiric i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/oneiric/i386/non-free/linux
+  INITRD kernel/ubuntu/oneiric/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/oneiric-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-precise-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu precise amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/precise/amd64/non-free/linux
+  INITRD kernel/ubuntu/precise/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/precise-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-precise-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu precise i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/precise/i386/non-free/linux
+  INITRD kernel/ubuntu/precise/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/precise-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-quantal-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu quantal amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/quantal/amd64/non-free/linux
+  INITRD kernel/ubuntu/quantal/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/quantal-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-quantal-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu quantal i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/quantal/i386/non-free/linux
+  INITRD kernel/ubuntu/quantal/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/quantal-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-raring-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu raring amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/raring/amd64/non-free/linux
+  INITRD kernel/ubuntu/raring/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/raring-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-raring-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu raring i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/raring/i386/non-free/linux
+  INITRD kernel/ubuntu/raring/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/raring-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-saucy-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu saucy amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/saucy/amd64/non-free/linux
+  INITRD kernel/ubuntu/saucy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/saucy-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-saucy-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL ubuntu saucy i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/ubuntu/saucy/i386/non-free/linux
+  INITRD kernel/ubuntu/saucy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/saucy-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-hardy-amd64-90pct-lvm-multi-sda
+  MENU LABEL ubuntu hardy amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/hardy/amd64/non-free/linux
+  INITRD kernel/ubuntu/hardy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/hardy-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-hardy-i386-90pct-lvm-multi-sda
+  MENU LABEL ubuntu hardy i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/hardy/i386/non-free/linux
+  INITRD kernel/ubuntu/hardy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/hardy-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-lucid-amd64-90pct-lvm-multi-sda
+  MENU LABEL ubuntu lucid amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/lucid/amd64/non-free/linux
+  INITRD kernel/ubuntu/lucid/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/lucid-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-lucid-i386-90pct-lvm-multi-sda
+  MENU LABEL ubuntu lucid i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/lucid/i386/non-free/linux
+  INITRD kernel/ubuntu/lucid/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/lucid-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-natty-amd64-90pct-lvm-multi-sda
+  MENU LABEL ubuntu natty amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/natty/amd64/non-free/linux
+  INITRD kernel/ubuntu/natty/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/natty-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-natty-i386-90pct-lvm-multi-sda
+  MENU LABEL ubuntu natty i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/natty/i386/non-free/linux
+  INITRD kernel/ubuntu/natty/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/natty-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-oneiric-amd64-90pct-lvm-multi-sda
+  MENU LABEL ubuntu oneiric amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/oneiric/amd64/non-free/linux
+  INITRD kernel/ubuntu/oneiric/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/oneiric-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-oneiric-i386-90pct-lvm-multi-sda
+  MENU LABEL ubuntu oneiric i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/oneiric/i386/non-free/linux
+  INITRD kernel/ubuntu/oneiric/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/oneiric-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-precise-amd64-90pct-lvm-multi-sda
+  MENU LABEL ubuntu precise amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/precise/amd64/non-free/linux
+  INITRD kernel/ubuntu/precise/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/precise-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-precise-i386-90pct-lvm-multi-sda
+  MENU LABEL ubuntu precise i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/precise/i386/non-free/linux
+  INITRD kernel/ubuntu/precise/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/precise-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-quantal-amd64-90pct-lvm-multi-sda
+  MENU LABEL ubuntu quantal amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/quantal/amd64/non-free/linux
+  INITRD kernel/ubuntu/quantal/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/quantal-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-quantal-i386-90pct-lvm-multi-sda
+  MENU LABEL ubuntu quantal i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/quantal/i386/non-free/linux
+  INITRD kernel/ubuntu/quantal/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/quantal-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-raring-amd64-90pct-lvm-multi-sda
+  MENU LABEL ubuntu raring amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/raring/amd64/non-free/linux
+  INITRD kernel/ubuntu/raring/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/raring-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-raring-i386-90pct-lvm-multi-sda
+  MENU LABEL ubuntu raring i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/raring/i386/non-free/linux
+  INITRD kernel/ubuntu/raring/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/raring-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-saucy-amd64-90pct-lvm-multi-sda
+  MENU LABEL ubuntu saucy amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/saucy/amd64/non-free/linux
+  INITRD kernel/ubuntu/saucy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/saucy-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL ubuntu-saucy-i386-90pct-lvm-multi-sda
+  MENU LABEL ubuntu saucy i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/ubuntu/saucy/i386/non-free/linux
+  INITRD kernel/ubuntu/saucy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/ubuntu/saucy-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+

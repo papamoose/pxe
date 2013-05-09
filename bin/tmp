@@ -1,0 +1,15 @@
+#!/bin/bash
+
+declare -a debian=(testing unstable stable squeeze wheezy)
+declare -a ubuntu=(hardy lucid natty oneiric precise quantal raring)
+
+declare -A distros=( ["ubuntu"]="${ubuntu[@]}" ["debian"]="${debian[@]}" )
+
+for distro in "${!distros[@]}"
+do
+  echo $distro
+  for release in ${distros["$distro"]}
+  do
+    echo $release
+  done
+done

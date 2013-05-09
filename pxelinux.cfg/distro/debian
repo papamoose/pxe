@@ -1,0 +1,366 @@
+LABEL back
+   MENU LABEL ^0 back...
+   KERNEL menu.c32
+   APPEND pxelinux.cfg/distro/default
+
+
+LABEL debian-sid-amd64-100pct-lvm-atomic-sda
+  MENU LABEL debian sid amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/debian/sid/amd64/non-free/linux
+  INITRD kernel/debian/sid/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/sid-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-sid-i386-100pct-lvm-atomic-sda
+  MENU LABEL debian sid i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/debian/sid/i386/non-free/linux
+  INITRD kernel/debian/sid/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/sid-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-testing-amd64-100pct-lvm-atomic-sda
+  MENU LABEL debian testing amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/debian/testing/amd64/non-free/linux
+  INITRD kernel/debian/testing/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/testing-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-testing-i386-100pct-lvm-atomic-sda
+  MENU LABEL debian testing i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/debian/testing/i386/non-free/linux
+  INITRD kernel/debian/testing/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/testing-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-unstable-amd64-100pct-lvm-atomic-sda
+  MENU LABEL debian unstable amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/debian/unstable/amd64/non-free/linux
+  INITRD kernel/debian/unstable/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/unstable-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-unstable-i386-100pct-lvm-atomic-sda
+  MENU LABEL debian unstable i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/debian/unstable/i386/non-free/linux
+  INITRD kernel/debian/unstable/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/unstable-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-stable-amd64-100pct-lvm-atomic-sda
+  MENU LABEL debian stable amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/debian/stable/amd64/non-free/linux
+  INITRD kernel/debian/stable/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/stable-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-stable-i386-100pct-lvm-atomic-sda
+  MENU LABEL debian stable i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/debian/stable/i386/non-free/linux
+  INITRD kernel/debian/stable/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/stable-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-squeeze-amd64-100pct-lvm-atomic-sda
+  MENU LABEL debian squeeze amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/debian/squeeze/amd64/non-free/linux
+  INITRD kernel/debian/squeeze/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/squeeze-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-squeeze-i386-100pct-lvm-atomic-sda
+  MENU LABEL debian squeeze i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/debian/squeeze/i386/non-free/linux
+  INITRD kernel/debian/squeeze/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/squeeze-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-wheezy-amd64-100pct-lvm-atomic-sda
+  MENU LABEL debian wheezy amd64 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/debian/wheezy/amd64/non-free/linux
+  INITRD kernel/debian/wheezy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/wheezy-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-wheezy-i386-100pct-lvm-atomic-sda
+  MENU LABEL debian wheezy i386 non-free 100pct-lvm-atomic-sda
+  LINUX kernel/debian/wheezy/i386/non-free/linux
+  INITRD kernel/debian/wheezy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/wheezy-100pct-lvm-atomic-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-sid-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL debian sid amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/debian/sid/amd64/non-free/linux
+  INITRD kernel/debian/sid/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/sid-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-sid-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL debian sid i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/debian/sid/i386/non-free/linux
+  INITRD kernel/debian/sid/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/sid-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-testing-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL debian testing amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/debian/testing/amd64/non-free/linux
+  INITRD kernel/debian/testing/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/testing-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-testing-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL debian testing i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/debian/testing/i386/non-free/linux
+  INITRD kernel/debian/testing/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/testing-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-unstable-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL debian unstable amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/debian/unstable/amd64/non-free/linux
+  INITRD kernel/debian/unstable/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/unstable-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-unstable-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL debian unstable i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/debian/unstable/i386/non-free/linux
+  INITRD kernel/debian/unstable/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/unstable-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-stable-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL debian stable amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/debian/stable/amd64/non-free/linux
+  INITRD kernel/debian/stable/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/stable-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-stable-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL debian stable i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/debian/stable/i386/non-free/linux
+  INITRD kernel/debian/stable/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/stable-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-squeeze-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL debian squeeze amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/debian/squeeze/amd64/non-free/linux
+  INITRD kernel/debian/squeeze/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/squeeze-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-squeeze-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL debian squeeze i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/debian/squeeze/i386/non-free/linux
+  INITRD kernel/debian/squeeze/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/squeeze-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-wheezy-amd64-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL debian wheezy amd64 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/debian/wheezy/amd64/non-free/linux
+  INITRD kernel/debian/wheezy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/wheezy-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-wheezy-i386-100pct-raid-lvm-atomic-sda+sdb
+  MENU LABEL debian wheezy i386 non-free 100pct-raid-lvm-atomic-sda+sdb
+  LINUX kernel/debian/wheezy/i386/non-free/linux
+  INITRD kernel/debian/wheezy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/wheezy-100pct-raid-lvm-atomic-sda+sdb interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-sid-amd64-50pct-lvm-multi-sda
+  MENU LABEL debian sid amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/debian/sid/amd64/non-free/linux
+  INITRD kernel/debian/sid/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/sid-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-sid-i386-50pct-lvm-multi-sda
+  MENU LABEL debian sid i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/debian/sid/i386/non-free/linux
+  INITRD kernel/debian/sid/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/sid-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-testing-amd64-50pct-lvm-multi-sda
+  MENU LABEL debian testing amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/debian/testing/amd64/non-free/linux
+  INITRD kernel/debian/testing/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/testing-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-testing-i386-50pct-lvm-multi-sda
+  MENU LABEL debian testing i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/debian/testing/i386/non-free/linux
+  INITRD kernel/debian/testing/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/testing-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-unstable-amd64-50pct-lvm-multi-sda
+  MENU LABEL debian unstable amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/debian/unstable/amd64/non-free/linux
+  INITRD kernel/debian/unstable/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/unstable-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-unstable-i386-50pct-lvm-multi-sda
+  MENU LABEL debian unstable i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/debian/unstable/i386/non-free/linux
+  INITRD kernel/debian/unstable/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/unstable-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-stable-amd64-50pct-lvm-multi-sda
+  MENU LABEL debian stable amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/debian/stable/amd64/non-free/linux
+  INITRD kernel/debian/stable/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/stable-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-stable-i386-50pct-lvm-multi-sda
+  MENU LABEL debian stable i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/debian/stable/i386/non-free/linux
+  INITRD kernel/debian/stable/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/stable-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-squeeze-amd64-50pct-lvm-multi-sda
+  MENU LABEL debian squeeze amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/debian/squeeze/amd64/non-free/linux
+  INITRD kernel/debian/squeeze/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/squeeze-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-squeeze-i386-50pct-lvm-multi-sda
+  MENU LABEL debian squeeze i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/debian/squeeze/i386/non-free/linux
+  INITRD kernel/debian/squeeze/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/squeeze-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-wheezy-amd64-50pct-lvm-multi-sda
+  MENU LABEL debian wheezy amd64 non-free 50pct-lvm-multi-sda
+  LINUX kernel/debian/wheezy/amd64/non-free/linux
+  INITRD kernel/debian/wheezy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/wheezy-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-wheezy-i386-50pct-lvm-multi-sda
+  MENU LABEL debian wheezy i386 non-free 50pct-lvm-multi-sda
+  LINUX kernel/debian/wheezy/i386/non-free/linux
+  INITRD kernel/debian/wheezy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/wheezy-50pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-sid-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL debian sid amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/debian/sid/amd64/non-free/linux
+  INITRD kernel/debian/sid/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/sid-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-sid-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL debian sid i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/debian/sid/i386/non-free/linux
+  INITRD kernel/debian/sid/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/sid-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-testing-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL debian testing amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/debian/testing/amd64/non-free/linux
+  INITRD kernel/debian/testing/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/testing-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-testing-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL debian testing i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/debian/testing/i386/non-free/linux
+  INITRD kernel/debian/testing/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/testing-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-unstable-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL debian unstable amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/debian/unstable/amd64/non-free/linux
+  INITRD kernel/debian/unstable/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/unstable-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-unstable-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL debian unstable i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/debian/unstable/i386/non-free/linux
+  INITRD kernel/debian/unstable/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/unstable-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-stable-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL debian stable amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/debian/stable/amd64/non-free/linux
+  INITRD kernel/debian/stable/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/stable-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-stable-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL debian stable i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/debian/stable/i386/non-free/linux
+  INITRD kernel/debian/stable/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/stable-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-squeeze-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL debian squeeze amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/debian/squeeze/amd64/non-free/linux
+  INITRD kernel/debian/squeeze/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/squeeze-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-squeeze-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL debian squeeze i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/debian/squeeze/i386/non-free/linux
+  INITRD kernel/debian/squeeze/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/squeeze-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-wheezy-amd64-80pct-lvm-advanced-partitions-sda
+  MENU LABEL debian wheezy amd64 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/debian/wheezy/amd64/non-free/linux
+  INITRD kernel/debian/wheezy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/wheezy-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-wheezy-i386-80pct-lvm-advanced-partitions-sda
+  MENU LABEL debian wheezy i386 non-free 80pct-lvm-advanced-partitions-sda
+  LINUX kernel/debian/wheezy/i386/non-free/linux
+  INITRD kernel/debian/wheezy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/wheezy-80pct-lvm-advanced-partitions-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-sid-amd64-90pct-lvm-multi-sda
+  MENU LABEL debian sid amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/debian/sid/amd64/non-free/linux
+  INITRD kernel/debian/sid/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/sid-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-sid-i386-90pct-lvm-multi-sda
+  MENU LABEL debian sid i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/debian/sid/i386/non-free/linux
+  INITRD kernel/debian/sid/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/sid-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-testing-amd64-90pct-lvm-multi-sda
+  MENU LABEL debian testing amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/debian/testing/amd64/non-free/linux
+  INITRD kernel/debian/testing/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/testing-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-testing-i386-90pct-lvm-multi-sda
+  MENU LABEL debian testing i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/debian/testing/i386/non-free/linux
+  INITRD kernel/debian/testing/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/testing-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-unstable-amd64-90pct-lvm-multi-sda
+  MENU LABEL debian unstable amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/debian/unstable/amd64/non-free/linux
+  INITRD kernel/debian/unstable/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/unstable-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-unstable-i386-90pct-lvm-multi-sda
+  MENU LABEL debian unstable i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/debian/unstable/i386/non-free/linux
+  INITRD kernel/debian/unstable/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/unstable-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-stable-amd64-90pct-lvm-multi-sda
+  MENU LABEL debian stable amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/debian/stable/amd64/non-free/linux
+  INITRD kernel/debian/stable/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/stable-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-stable-i386-90pct-lvm-multi-sda
+  MENU LABEL debian stable i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/debian/stable/i386/non-free/linux
+  INITRD kernel/debian/stable/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/stable-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-squeeze-amd64-90pct-lvm-multi-sda
+  MENU LABEL debian squeeze amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/debian/squeeze/amd64/non-free/linux
+  INITRD kernel/debian/squeeze/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/squeeze-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-squeeze-i386-90pct-lvm-multi-sda
+  MENU LABEL debian squeeze i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/debian/squeeze/i386/non-free/linux
+  INITRD kernel/debian/squeeze/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/squeeze-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-wheezy-amd64-90pct-lvm-multi-sda
+  MENU LABEL debian wheezy amd64 non-free 90pct-lvm-multi-sda
+  LINUX kernel/debian/wheezy/amd64/non-free/linux
+  INITRD kernel/debian/wheezy/amd64/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/wheezy-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
+LABEL debian-wheezy-i386-90pct-lvm-multi-sda
+  MENU LABEL debian wheezy i386 non-free 90pct-lvm-multi-sda
+  LINUX kernel/debian/wheezy/i386/non-free/linux
+  INITRD kernel/debian/wheezy/i386/non-free/initrd.gz
+  APPEND url=http://10.13.37.205/distro/debian/wheezy-90pct-lvm-multi-sda interface=auto netdfg/dhcp_timeout=60 priority=critical auto=true
+
