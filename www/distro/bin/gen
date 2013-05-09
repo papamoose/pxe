@@ -224,8 +224,8 @@ main(){
     do
       for arch in $architectures
       do
-        downloadkernel $distro $release $arch	# working
-        createpxeentry $distro $release $arch	# working, no menu entries to navigate between (distro, releases, arch, status)
+#        downloadkernel $distro $release $arch	# working
+#        createpxeentry $distro $release $arch	# working, no menu entries to navigate between (distro, releases, arch, status)
         createpreseed $distro $release $arch	# working
       done
     done

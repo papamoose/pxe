@@ -1,0 +1,33 @@
+d-i debian-installer/locale string en_US
+d-i console-keymaps-at/keymap select us
+d-i keyboard-configuration/xkb-keymap select us
+
+d-i netcfg/choose_interface select auto
+d-i netcfg/get_hostname string unassigned-hostname
+d-i netcfg/get_domain string unassigned-domain
+
+d-i hw-detect/load_firmware boolean true
+
+d-i mirror/country string manual
+d-i mirror/http/hostname string mirror.anl.gov
+d-i mirror/http/directory string /debian
+#d-i mirror/http/proxy string
+d-i mirror/suite string stable
+
+d-i passwd/root-password-crypted password $1$ahwobeeh$wDnkfRQ5COUC5BjnOekoQ0
+d-i passwd/make-user boolean false
+
+d-i clock-setup/utc boolean true
+d-i time/zone string US/Central
+d-i clock-setup/ntp boolean true
+
+
+d-i apt-setup/non-free boolean true
+d-i apt-setup/contrib boolean true
+tasksel tasksel/first multiselect standard
+d-i pkgsel/include string openssh-server build-essential
+d-i pkgsel/upgrade select full-upgrade
+
+popularity-contest popularity-contest/participate boolean false
+d-i finish-install/reboot_in_progress note
+d-i cdrom-detect/eject boolean false
