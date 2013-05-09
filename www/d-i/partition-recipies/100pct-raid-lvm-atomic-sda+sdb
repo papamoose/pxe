@@ -1,0 +1,51 @@
+d-i partman-lvm/device_remove_lvm boolean true
+d-i partman-md/device_remove_md boolean true
+d-i partman-lvm/confirm boolean true
+d-i partman-lvm/confirm_nooverwrite boolean true
+d-i partman-md/confirm boolean true
+d-i partman-md/confirm_nooverwrite boolean true
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+d-i partman-auto/method string raid
+d-i partman-auto/disk string /dev/sda /dev/sdb
+d-i partman/choose_partition select finish
+d-i partman-partitioning/confirm_write_new_label boolean true
+d-i partman/mount_style select uuid
+d-i partman-auto-lvm/new_vg_name string bootdisk
+d-i partman-auto-lvm/guided_size string max
+d-i partman-auto-raid/recipe string \
+1 2 0 ext4 /boot \
+/dev/sda1#/dev/sdb1 \
+. \
+1 2 0 lvm / \
+/dev/sda2#/dev/sdb2 \
+.
+d-i partman-auto/expert_recipe string \
+multiraid :: \
+100 512 256 raid \
+$lvmignore{ } \
+$primary{ } \
+method{ raid } \
+. \
+900 5000 1000000000 raid \
+$lvmignore{ } \
+$primary{ } \
+method{ raid } \
+. \
+700 5000 1000000000 ext4 \
+$defaultignore{ } \
+$lvmok{ } \
+method{ format } \
+format{ } \
+use_filesystem{ } \
+filesystem{ ext4 } \
+options/relatime{ relatime } \
+mountpoint{ / } \
+. \
+256 3000 100% linux-swap \
+$defaultignore{ } \
+$lvmok{ } \
+method{ swap } \
+format{ } \
+.
+d-i mdadm/boot_degraded boolean false

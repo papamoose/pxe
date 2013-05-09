@@ -2,7 +2,7 @@
 
 # Global Variables
 preseed_server="http://10.13.37.205"
-host="host/dns"
+host="host/debian-host"
 wd='/root'
 
 main(){
@@ -23,10 +23,7 @@ network(){
 auto lo
 iface lo inet loopback
 auto eth0
-iface eth0 inet static
-  address 10.13.37.212
-  netmask 255.255.255.0
-  gateway 10.13.37.1
+iface eth0 inet dhcp
   dns-nameservers 10.13.37.206
 EOF
 /etc/init.d/networking restart

@@ -6,8 +6,8 @@
 
 
 distro=$1
-ubuntu="oneiric precise quantal raring"
-debian="squeeze wheezy stable unstable testing"
+ubuntu="hardy lucid natty oneiric precise quantal raring saucy"
+debian="squeeze wheezy stable unstable"
 WORKING_DIR=/tmp/initrd
 CURRENT_DIR=`pwd -P`
 

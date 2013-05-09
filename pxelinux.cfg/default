@@ -12,15 +12,20 @@ LABEL local
   MENU LABEL ^1 Local Disk
   localboot 0
 
-LABEL Debian Installer
-  MENU LABEL ^2 Debian Installer
+LABEL distro
+  MENU LABEL ^2 Net Install
   KERNEL menu.c32
-  APPEND pxelinux.cfg/debian-installer
+  APPEND pxelinux.cfg/distro/default
 
 LABEL utils
   MENU LABEL ^3 Utilities
   KERNEL menu.c32
   APPEND pxelinux.cfg/utils
+
+LABEL custom_servers
+  MENU LABEL ^7 Custom Hosts
+  KERNEL menu.c32
+  APPEND pxelinux.cfg/hosts
 
 LABEL virts
   MENU LABEL ^4 Virtualization
@@ -37,8 +42,3 @@ LABEL windows
   MENU LABEL ^6 Windows
   KERNEL menu.c32
   APPEND pxelinux.cfg/windows
-
-LABEL custom_servers
-  MENU LABEL ^7 Custom Hosts
-  KERNEL menu.c32
-  APPEND pxelinux.cfg/hosts

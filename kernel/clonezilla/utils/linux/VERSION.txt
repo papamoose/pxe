@@ -1,2 +1,0 @@
-SYSLINUX version: 4.06
-4.06

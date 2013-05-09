@@ -2,3 +2,49 @@ LABEL back
    MENU LABEL ^0 back...
    KERNEL menu.c32
    APPEND pxelinux.cfg/default
+
+LABEL pmagic
+  MENU LABEL ^1 Parted Magic 32 bit
+  LINUX kernel/pmagic/bzImage
+  INITRD kernel/pmagic/initrd.img
+  APPEND edd=off load_ramdisk=1 prompt_ramdisk=0 rw vga=normal loglevel=9 max_loop=256
+
+LABEL pmagic64
+  MENU LABEL ^2 Parted Magic 64 bit
+  LINUX kernel/pmagic/bzImage64
+  INITRD kernel/pmagic/initrd.img
+  APPEND edd=off load_ramdisk=1 prompt_ramdisk=0 rw vga=normal loglevel=9 max_loop=256
+
+
+LABEL clonezilla 
+  MENU LABEL ^3 Clonezilla Live (Ramdisk) i686 
+  KERNEL kernel/clonezilla/i686/live/vmlinuz 
+  INITRD kernel/clonezilla/i686/live/initrd.img 
+  APPEND boot=live config noswap nolocales edd=on nomodeset ocs_live_run="ocs-live-general" ocs_live_extra_param="" keyboard-layouts="en_US" ocs_live_batch="no" locales="en_US.UTF-8" vga=788 nosplash noswap noprompt fetch=tftp://tftp.pk.lan/kernel/clonezilla/i686/live/filesystem.squashfs
+ 
+LABEL clonezilla 
+  MENU LABEL ^4 Clonezilla Live (Ramdisk) i486 
+  KERNEL kernel/clonezilla/i486/live/vmlinuz 
+  INITRD kernel/clonezilla/i486/live/initrd.img 
+  APPEND boot=live config noswap nolocales edd=on nomodeset ocs_live_run="ocs-live-general" ocs_live_extra_param="" keyboard-layouts="en_US" ocs_live_batch="no" locales="en_US.UTF-8" vga=788 nosplash noswap noprompt fetch=tftp://tftp.pk.lan/kernel/clonezilla/i486/live/filesystem.squashfs
+
+LABEL memtest86
+   MENU LABEL ^5 memtest86+ 4.20
+   KERNEL kernel/memtest/memtest86+-4.20
+
+LABEL DBAN
+  MENU LABEL ^6 DBAN v2.2.7 [Interactive mode]
+  KERNEL kernel/dban/dban.bzi
+  APPEND root=/dev/ram0 init=/rc nuke="dwipe"
+
+LABEL DBAN_Short
+  MENU LABEL ^7 DBAN v2.2.7 [DoD 5220.22-M: short]
+  KERNEL kernel/dban/dban.bzi
+  APPEND nuke="dwipe --autonuke --method dodshort" silent
+
+LABEL DBAN_Long
+  MENU LABEL ^8 DBAN v2.2.7 [DoD 5220.22-M: long]
+  KERNEL kernel/dban/dban.bzi
+  APPEND nuke="dwipe --autonuke --method dod522022m" silent
+
+
