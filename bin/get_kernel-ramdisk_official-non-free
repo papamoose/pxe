@@ -34,6 +34,11 @@ control_c() {
   exit $?
 }
 
+usage(){
+  echo "Usage: $0 <distribution>"
+  echo "Only supports 'ubuntu' and 'debian'"
+}
+
 main(){
   if [ -z "$distro" ]; then
     usage
@@ -93,11 +98,6 @@ main(){
     usage
     exit
   fi
-}
-
-usage(){
-  echo "Usage: $0 <distribution>"
-  echo "Only supports 'ubuntu' and 'debian'"
 }
 
 main
