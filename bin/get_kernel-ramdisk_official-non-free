@@ -17,8 +17,8 @@ distro=$1
 ubuntu="precise trusty"
 debian="wheezy"
 archs="amd64"
-WORKING_DIR=/tmp/initrd
-CURRENT_DIR=`pwd -P`
+WORKING_DIR='/tmp/initrd'
+CURRENT_DIR=$(pwd -P)
 
 mkdir -p $WORKING_DIR
 
