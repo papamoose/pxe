@@ -1,5 +1,8 @@
-#!/bin/bash
+
 set -e
+
+# trap keyboard interrupt (control-c)
+trap control_c INT
 
 # Must be run as root
 # requires wget and curl
@@ -18,72 +21,83 @@ WORKING_DIR=/tmp/initrd
 CURRENT_DIR=`pwd -P`
 
 mkdir -p $WORKING_DIR
-rm -rf $WORKING_DIR/*
+
+cleanup() {
+  rm -rf $WORKING_DIR/*
+  return $?
+}
+
+control_c() {
+  # run if user hits control-c
+  echo "Caught interupt. Cleaning up..."
+  cleanup
+  exit $?
+}
 
 main(){
   if [ -z "$distro" ]; then
-     usage
-     exit
+    usage
+    exit
   fi
 
   if [ $distro == 'ubuntu' ] || [ $distro == 'debian' ]; then
 
-     if [ $distro == 'ubuntu' ]; then
-        distroreleases=$ubuntu
-     elif [ $distro == 'debian' ]; then
-        distroreleases=$debian
-     fi
+    if [ $distro == 'ubuntu' ]; then
+      distroreleases=$ubuntu
+    elif [ $distro == 'debian' ]; then
+      distroreleases=$debian
+    fi
 
-     for release in $distroreleases
-     do
-        for arch in $archs
+    for release in $distroreleases
+    do
+      for arch in $archs
+      do
+        mkdir -p $CURRENT_DIR/$release/$arch/official
+        mkdir -p $CURRENT_DIR/$release/$arch/non-free
+        for file in linux initrd.gz
         do
-           mkdir -p $CURRENT_DIR/$release/$arch/official
-           mkdir -p $CURRENT_DIR/$release/$arch/non-free
-           for file in linux initrd.gz
-           do
-              echo "Downloading $release $arch $file..."
-              wget -q -c -P $CURRENT_DIR/$release/$arch/official/ http://mirror.anl.gov/$distro/dists/$release/main/installer-$arch/current/images/netboot/$distro-installer/$arch/$file
-           done
-
-           echo "Copying kernel and ram disk to non-free directory..."
-           cp $CURRENT_DIR/$release/$arch/official/linux $CURRENT_DIR/$release/$arch/non-free/linux
-           cp $CURRENT_DIR/$release/$arch/official/initrd.gz $CURRENT_DIR/$release/$arch/non-free/initrd.gz
-
-           # copy initrd to working directory
-           mkdir -p $WORKING_DIR/firmware
-           cd $WORKING_DIR
-           echo "Downloading firmware.tar.gz..."
-           wget -cq http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/wheezy/current/firmware.tar.gz
-
-           echo "Extracting firmware..."
-           tar -C firmware -zxf firmware.tar.gz
-
-           echo "Combining all debs in firmware.tar.gz into one gzip file..."
-           pax -x sv4cpio -s'%firmware%/firmware%' -w firmware | gzip -c >firmware.cpio.gz
-
-           # cd to the directory where you have your initrd
-           cd $CURRENT_DIR/$release/$arch/non-free
-           [ -f $CURRENT_DIR/$release/$arch/non-free/initrd.gz.orig ] || cp -p $CURRENT_DIR/$release/$arch/non-free/initrd.gz $CURRENT_DIR/$release/$arch/non-free/initrd.gz.orig
-           echo "Creating new ram disk with non-free firmware..."
-           cat $CURRENT_DIR/$release/$arch/non-free/initrd.gz.orig $WORKING_DIR/firmware.cpio.gz > $CURRENT_DIR/$release/$arch/non-free/initrd.gz
-           rm $CURRENT_DIR/$release/$arch/non-free/initrd.gz.orig
-
-           # go back to directory from which we started
-           cd $CURRENT_DIR
+          echo "Downloading $release $arch $file..."
+          wget -q -c -P $CURRENT_DIR/$release/$arch/official/ http://mirror.anl.gov/$distro/dists/$release/main/installer-$arch/current/images/netboot/$distro-installer/$arch/$file
         done
-     done
-     echo "Cleaning up..."
-     rm -r $WORKING_DIR
+
+        echo "Copying kernel and ram disk to non-free directory..."
+        cp $CURRENT_DIR/$release/$arch/official/linux $CURRENT_DIR/$release/$arch/non-free/linux
+        cp $CURRENT_DIR/$release/$arch/official/initrd.gz $CURRENT_DIR/$release/$arch/non-free/initrd.gz
+
+        # copy initrd to working directory
+        mkdir -p $WORKING_DIR/firmware
+        cd $WORKING_DIR
+        echo "Downloading firmware.tar.gz..."
+        wget -cq http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/wheezy/current/firmware.tar.gz
+
+        echo "Extracting firmware..."
+        tar -C firmware -zxf firmware.tar.gz
+
+        echo "Combining all debs in firmware.tar.gz into one gzip file..."
+        pax -x sv4cpio -s'%firmware%/firmware%' -w firmware | gzip -c >firmware.cpio.gz
+
+        # cd to the directory where you have your initrd
+        cd $CURRENT_DIR/$release/$arch/non-free
+        [ -f $CURRENT_DIR/$release/$arch/non-free/initrd.gz.orig ] || cp -p $CURRENT_DIR/$release/$arch/non-free/initrd.gz $CURRENT_DIR/$release/$arch/non-free/initrd.gz.orig
+        echo "Creating new ram disk with non-free firmware..."
+        cat $CURRENT_DIR/$release/$arch/non-free/initrd.gz.orig $WORKING_DIR/firmware.cpio.gz > $CURRENT_DIR/$release/$arch/non-free/initrd.gz
+        rm $CURRENT_DIR/$release/$arch/non-free/initrd.gz.orig
+
+        # go back to directory from which we started
+        cd $CURRENT_DIR
+      done
+    done
+    echo "Cleaning up..."
+    cleanup
   else
-     usage
-     exit
+    usage
+    exit
   fi
 }
 
 usage(){
-   echo "Usage: $0 <distribution>"
-   echo "Only supports 'ubuntu' and 'debian'"
+  echo "Usage: $0 <distribution>"
+  echo "Only supports 'ubuntu' and 'debian'"
 }
 
 main
