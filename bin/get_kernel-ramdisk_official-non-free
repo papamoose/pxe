@@ -78,6 +78,12 @@ main(){
         echo "Extracting firmware..."
         tar -C firmware -zxf firmware.tar.gz
 
+        # 2015-01-30: Debian kernel doesn't support the newest version of the Brocade firmware found in the kernel.org linux-firmware git repository.
+        if [ "$distro" == 'debian' ]; then
+          echo "Downloading Brocade firmware..."
+          wget -cq http://people.cs.uchicago.edu/~kauffman/debian/firmware/brocade/3.0.2.2/firmware-brocade-uofc-cs_3.0.2.2-1_all.deb -O firmware/firmware-brocade-uofc-cs_3.0.2.2-1_all.deb
+        fi
+
         echo "Combining all debs in firmware.tar.gz into one gzip file..."
         pax -x sv4cpio -s'%firmware%/firmware%' -w firmware | gzip -c >firmware.cpio.gz
 
