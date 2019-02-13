@@ -4,21 +4,11 @@ set -e
 # trap keyboard interrupt (control-c)
 trap control_c INT
 
-# Must be run as root
-# requires wget and curl
+# kernel.org git repo of firmware: http://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git/tree/
 
-# shows how initrd.gz finds firmware, could potentially download all firmware debs and put them in /firmware.
-#root@tftp:/var/lib/tftpboot/kernel/debian/wheezy/amd64/non-free/tmp# grep -ri "*.udeb" *
-#bin/mountmedia: for filename in $dir/*.deb $dir/*.udeb $dir/*.ude \
-#bin/mountmedia: $dir/firmware/*.deb $dir/firmware/*.udeb $dir/firmware/*.ude; do
-#bin/check-missing-firmware: check_for_firmware /firmware/*.deb /firmware/*.udeb
-
-distro=$1
-ubuntu="precise trusty"
-debian="wheezy"
-archs="amd64"
-WORKING_DIR='/tmp/initrd'
-CURRENT_DIR=$(pwd -P)
+INITRD="$1"
+WORKING_DIR=/tmp/initrd
+CURRENT_DIR="$(pwd -P)"
 
 mkdir -p $WORKING_DIR
 
@@ -34,76 +24,66 @@ control_c() {
   exit $?
 }
 
-usage(){
-  echo "Usage: $0 <distribution>"
-  echo "Only supports 'ubuntu' and 'debian'"
-}
-
 main(){
-  if [ -z "$distro" ]; then
-    usage
-    exit
-  fi
+  # this is now a thing: http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/unstable/current/firmware.cpio.gz
+  # cat initrd.gz $(wget -O- http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/unstable/current/firmware.cpio.gz) > newinitrd.gz
 
-  if [ $distro == 'ubuntu' ] || [ $distro == 'debian' ]; then
+  mkdir -p $WORKING_DIR
 
-    if [ $distro == 'ubuntu' ]; then
-      distroreleases=$ubuntu
-    elif [ $distro == 'debian' ]; then
-      distroreleases=$debian
-    fi
+  ARCH="$1"
+  DISTRO="$2"
+  RELEASE="$3"
+  HWE="$4"
 
-    for release in $distroreleases
-    do
-      for arch in $archs
-      do
-        mkdir -p $CURRENT_DIR/$release/$arch/official
-        mkdir -p $CURRENT_DIR/$release/$arch/non-free
-        for file in linux initrd.gz
-        do
-          echo "Downloading $release $arch $file..."
-          wget -q -c -P $CURRENT_DIR/$release/$arch/official/ http://mirror.anl.gov/$distro/dists/$release/main/installer-$arch/current/images/netboot/$distro-installer/$arch/$file
-        done
-
-        echo "Copying kernel and ram disk to non-free directory..."
-        cp $CURRENT_DIR/$release/$arch/official/linux $CURRENT_DIR/$release/$arch/non-free/linux
-        cp $CURRENT_DIR/$release/$arch/official/initrd.gz $CURRENT_DIR/$release/$arch/non-free/initrd.gz
-
-        # copy initrd to working directory
-        mkdir -p $WORKING_DIR/firmware
-        cd $WORKING_DIR
-        echo "Downloading firmware.tar.gz..."
-        wget -cq http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/wheezy/current/firmware.tar.gz
-
-        echo "Extracting firmware..."
-        tar -C firmware -zxf firmware.tar.gz
-
-        # 2015-01-30: Debian kernel doesn't support the newest version of the Brocade firmware found in the kernel.org linux-firmware git repository.
-        if [ "$distro" == 'debian' ]; then
-          echo "Downloading Brocade firmware..."
-          wget -cq http://people.cs.uchicago.edu/~kauffman/debian/firmware/brocade/3.0.2.2/firmware-brocade-uofc-cs_3.0.2.2-1_all.deb -O firmware/firmware-brocade-uofc-cs_3.0.2.2-1_all.deb
-        fi
-
-        echo "Combining all debs in firmware.tar.gz into one gzip file..."
-        pax -x sv4cpio -s'%firmware%/firmware%' -w firmware | gzip -c >firmware.cpio.gz
-
-        # cd to the directory where you have your initrd
-        cd $CURRENT_DIR/$release/$arch/non-free
-        [ -f $CURRENT_DIR/$release/$arch/non-free/initrd.gz.orig ] || cp -p $CURRENT_DIR/$release/$arch/non-free/initrd.gz $CURRENT_DIR/$release/$arch/non-free/initrd.gz.orig
-        echo "Creating new ram disk with non-free firmware..."
-        cat $CURRENT_DIR/$release/$arch/non-free/initrd.gz.orig $WORKING_DIR/firmware.cpio.gz > $CURRENT_DIR/$release/$arch/non-free/initrd.gz
-        rm $CURRENT_DIR/$release/$arch/non-free/initrd.gz.orig
-
-        # go back to directory from which we started
-        cd $CURRENT_DIR
-      done
-    done
-    echo "Cleaning up..."
-    cleanup
+  if [ "$DISTRO" == 'ubuntu' ] && [ "$HWE" == 'hwe' ]; then
+    # Hardware enablement
+    URL="http://mirror.cs.uchicago.edu/${DISTRO}/dists/${RELEASE}-updates/main/installer-${ARCH}/current/images/hwe-netboot/ubuntu-installer/${ARCH}"
   else
-    usage
-    exit
+    URL="http://mirror.cs.uchicago.edu/${DISTRO}/dists/${RELEASE}/main/installer-${ARCH}/current/images/netboot/${DISTRO}-installer/${ARCH}"
   fi
+
+  echo "Downloading firmware.cpio.gz..."
+  if [ ${DISTRO} == 'debian' ]; then
+    firmwareurl="http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/${RELEASE}/current/firmware.cpio.gz"
+  else
+    firmwareurl="http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/unstable/current/firmware.cpio.gz"
+  fi
+  wget -O $WORKING_DIR/firmware.cpio.gz -cq $firmwareurl
+
+  echo "Downloading initrd.gz for ${DISTRO} ${RELEASE}..."
+  wget -O $WORKING_DIR/${DISTRO}_${RELEASE}_initrd.gz -cq $URL/initrd.gz
+  wget -O $WORKING_DIR/${DISTRO}_${RELEASE}_linux -cq $URL/linux
+
+  echo "Adding firmware to initrd..."
+  cat $WORKING_DIR/${DISTRO}_${RELEASE}_initrd.gz $WORKING_DIR/firmware.cpio.gz > $WORKING_DIR/${DISTRO}_${RELEASE}_additional_firmware_initrd.gz
+
+  echo "Copying kernel, original initrd and the new initrd into the current directory..."
+  cp $WORKING_DIR/${DISTRO}_${RELEASE}_additional_firmware_initrd.gz $PWD
+  cp $WORKING_DIR/${DISTRO}_${RELEASE}_linux $PWD
+  cp $WORKING_DIR/${DISTRO}_${RELEASE}_initrd.gz $PWD
+
+  echo
+  echo "To make these availabe you can run the following"
+  echo
+  echo "mv ${DISTRO}_${RELEASE}_linux ../${DISTRO}/${RELEASE}/amd64/non-free/linux"
+  echo "mv ${DISTRO}_${RELEASE}_additional_firmware_initrd.gz ../${DISTRO}/${RELEASE}/amd64/non-free/initrd.gz"
+  echo "chmod 644 ../${DISTRO}/${RELEASE}/amd64/non-free/*"
+  echo
+
 }
 
-main
+usage(){
+  echo "Usage: $0 <ARCH> <DISTRO> <RELEASE> [hwe]"
+  echo "  Downloads installation kernel, ramdisk, and non-free firmware."
+  echo "  Injects non-free firmware into ramdisk."
+  echo "  Produces 3 files: kernel, original ramdisk, ramdisk with non-free firmware."
+}
+
+if [ -z "$INITRD" ]; then
+  usage
+  exit
+else
+  cleanup
+  main "$1" "$2" "$3"
+  cleanup
+fi
