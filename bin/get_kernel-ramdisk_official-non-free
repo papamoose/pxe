@@ -38,6 +38,14 @@ main(){
   if [ "$DISTRO" == 'ubuntu' ] && [ "$HWE" == 'hwe' ]; then
     # Hardware enablement
     URL="http://mirror.cs.uchicago.edu/${DISTRO}/dists/${RELEASE}-updates/main/installer-${ARCH}/current/images/hwe-netboot/ubuntu-installer/${ARCH}"
+  elif [ "$DISTRO" == 'ubuntu' ]; then
+    # test to see if kernel updates exist and use them if they do
+    update_kernel_exist=$(curl -sf "http://mirror.cs.uchicago.edu/${DISTRO}/dists/${RELEASE}-updates/main/installer-${ARCH}/current/images/netboot/ubuntu-installer/${ARCH}" >/dev/null 2>&1; echo $?)
+    if [ $update_kernel_exist -eq 0 ]; then
+      URL="http://mirror.cs.uchicago.edu/${DISTRO}/dists/${RELEASE}-updates/main/installer-${ARCH}/current/images/netboot/ubuntu-installer/${ARCH}"
+    else
+      URL="http://mirror.cs.uchicago.edu/${DISTRO}/dists/${RELEASE}/main/installer-${ARCH}/current/images/netboot/${DISTRO}-installer/${ARCH}"
+    fi
   else
     URL="http://mirror.cs.uchicago.edu/${DISTRO}/dists/${RELEASE}/main/installer-${ARCH}/current/images/netboot/${DISTRO}-installer/${ARCH}"
   fi
