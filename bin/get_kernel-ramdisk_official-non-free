@@ -92,6 +92,6 @@ if [ -z "$INITRD" ]; then
   exit
 else
   cleanup
-  main "$1" "$2" "$3"
+  main "$1" "$2" "$3" "$4"
   cleanup
 fi
