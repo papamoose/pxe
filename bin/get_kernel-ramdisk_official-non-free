@@ -7,13 +7,13 @@ trap control_c INT
 # kernel.org git repo of firmware: http://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git/tree/
 
 INITRD="$1"
-WORKING_DIR=/tmp/initrd
-CURRENT_DIR="$(pwd -P)"
+d=/tmp/initrd
+cdir="$(pwd -P)"
 
-mkdir -p $WORKING_DIR
+mkdir -p $d
 
 cleanup() {
-  rm -rf $WORKING_DIR/*
+  rm -rf ${d}/*
   return $?
 }
 
@@ -28,26 +28,32 @@ main(){
   # this is now a thing: http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/unstable/current/firmware.cpio.gz
   # cat initrd.gz $(wget -O- http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/unstable/current/firmware.cpio.gz) > newinitrd.gz
 
-  mkdir -p $WORKING_DIR
+  mkdir -p ${d}
 
   ARCH="$1"
   DISTRO="$2"
   RELEASE="$3"
   HWE="$4"
 
+  mirror='http://mirror.cs.uchicago.edu'
+
   if [ "$DISTRO" == 'ubuntu' ] && [ "$HWE" == 'hwe' ]; then
     # Hardware enablement
-    URL="http://mirror.cs.uchicago.edu/${DISTRO}/dists/${RELEASE}-updates/main/installer-${ARCH}/current/images/hwe-netboot/ubuntu-installer/${ARCH}"
+    URL="${mirror}/${DISTRO}/dists/${RELEASE}-updates/main/installer-${ARCH}/current/images/hwe-netboot/ubuntu-installer/${ARCH}"
   elif [ "$DISTRO" == 'ubuntu' ]; then
     # test to see if kernel updates exist and use them if they do
-    update_kernel_exist=$(curl -sf "http://mirror.cs.uchicago.edu/${DISTRO}/dists/${RELEASE}-updates/main/installer-${ARCH}/current/images/netboot/ubuntu-installer/${ARCH}" >/dev/null 2>&1; echo $?)
+    update_kernel_exist=$(curl -sf "${mirror}/${DISTRO}/dists/${RELEASE}-updates/main/installer-${ARCH}/current/images/netboot/ubuntu-installer/${ARCH}" >/dev/null 2>&1; echo $?)
+    legacy_images_exists=$(curl -sf "${mirror}/${DISTRO}/dists/${RELEASE}/main/installer-${ARCH}/current/legacy-images" > /dev/null 2>&1; echo $?)
+
     if [ $update_kernel_exist -eq 0 ]; then
-      URL="http://mirror.cs.uchicago.edu/${DISTRO}/dists/${RELEASE}-updates/main/installer-${ARCH}/current/images/netboot/ubuntu-installer/${ARCH}"
+      URL="${mirror}/${DISTRO}/dists/${RELEASE}-updates/main/installer-${ARCH}/current/images/netboot/ubuntu-installer/${ARCH}"
+    elif [ $legacy_images_exists -eq -0 ]; then
+      URL="${mirror}/${DISTRO}/dists/${RELEASE}/main/installer-${ARCH}/current/legacy-images/netboot/ubuntu-installer/${ARCH}"
     else
-      URL="http://mirror.cs.uchicago.edu/${DISTRO}/dists/${RELEASE}/main/installer-${ARCH}/current/images/netboot/${DISTRO}-installer/${ARCH}"
+      URL="${mirror}/${DISTRO}/dists/${RELEASE}/main/installer-${ARCH}/current/images/netboot/${DISTRO}-installer/${ARCH}"
     fi
   else
-    URL="http://mirror.cs.uchicago.edu/${DISTRO}/dists/${RELEASE}/main/installer-${ARCH}/current/images/netboot/${DISTRO}-installer/${ARCH}"
+    URL="${mirror}/${DISTRO}/dists/${RELEASE}/main/installer-${ARCH}/current/images/netboot/${DISTRO}-installer/${ARCH}"
   fi
 
   echo "Downloading firmware.cpio.gz..."
@@ -56,19 +62,19 @@ main(){
   else
     firmwareurl="http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/unstable/current/firmware.cpio.gz"
   fi
-  wget -O $WORKING_DIR/firmware.cpio.gz -cq $firmwareurl
+  wget -O ${d}/firmware.cpio.gz -cq $firmwareurl
 
   echo "Downloading initrd.gz for ${DISTRO} ${RELEASE}..."
-  wget -O $WORKING_DIR/${DISTRO}_${RELEASE}_initrd.gz -cq $URL/initrd.gz
-  wget -O $WORKING_DIR/${DISTRO}_${RELEASE}_linux -cq $URL/linux
+  wget -O ${d}/${DISTRO}_${RELEASE}_initrd.gz -cq $URL/initrd.gz
+  wget -O ${d}/${DISTRO}_${RELEASE}_linux -cq $URL/linux
 
   echo "Adding firmware to initrd..."
-  cat $WORKING_DIR/${DISTRO}_${RELEASE}_initrd.gz $WORKING_DIR/firmware.cpio.gz > $WORKING_DIR/${DISTRO}_${RELEASE}_additional_firmware_initrd.gz
+  cat ${d}/${DISTRO}_${RELEASE}_initrd.gz ${d}/firmware.cpio.gz > ${d}/${DISTRO}_${RELEASE}_additional_firmware_initrd.gz
 
   echo "Copying kernel, original initrd and the new initrd into the current directory..."
-  cp $WORKING_DIR/${DISTRO}_${RELEASE}_additional_firmware_initrd.gz $PWD
-  cp $WORKING_DIR/${DISTRO}_${RELEASE}_linux $PWD
-  cp $WORKING_DIR/${DISTRO}_${RELEASE}_initrd.gz $PWD
+  cp ${d}/${DISTRO}_${RELEASE}_additional_firmware_initrd.gz $PWD
+  cp ${d}/${DISTRO}_${RELEASE}_linux $PWD
+  cp ${d}/${DISTRO}_${RELEASE}_initrd.gz $PWD
 
   echo
   echo "To make these availabe you can run the following"
